@@ -1,4 +1,4 @@
-from rest_framework import generics
+from rest_framework import generics,permissions, authentication
 # Create your views here.
 
 
@@ -9,6 +9,8 @@ from .serializers import ProductSerializers
 class ProductListCreateAPIView(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializers
+    authentication_classes = [authentication.SessionAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
 
 product_list_create_view = ProductListCreateAPIView.as_view()
 
