@@ -9,7 +9,8 @@ from .serializers import ProductSerializers
 class ProductListCreateAPIView(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializers
-    authentication_classes = [authentication.SessionAuthentication]
+    authentication_classes = [authentication.SessionAuthentication, 
+                              authentication.TokenAuthentication]
     permission_classes = [permissions.IsAuthenticated]
 
 product_list_create_view = ProductListCreateAPIView.as_view()
